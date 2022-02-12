@@ -15,17 +15,18 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+  // console.log('tabs topics:', topics)
   const tabTopics = document.createElement('div')
-  const tab = document.createElement('div')
   
   tabTopics.classList.add('topics')
-  tab.classList.add('tab')
-
-  tab.textContent = topics
+  
+  
 
   topics.forEach(arrayItem => {
-    const newTab = Tabs(arrayItem);
-    tabTopics.appendChild(newTab)
+    const tab = document.createElement('div')
+    tabTopics.appendChild(tab)
+    tab.classList.add('tab')
+    tab.textContent = arrayItem
   })
   
   
@@ -62,12 +63,10 @@ const tabsAppender = (selector) => {
 const tabsContainer = document.querySelector(selector)
 axios.get(`http://localhost:5000/api/topics`)
   .then(resp => {
-    console.log(resp.data)
-    resp.data.forEach(item => {
-      let tab = Tabs(item)
-      tabTopics.appendChild(tab)
+    // console.log('tabs axios request:', resp.data)
+    tabsContainer.appendChild(Tabs(resp.data.topics))
+    
     })
-  })
   .catch(err => console.error(err))
 } 
 
