@@ -65,9 +65,9 @@ axios.get(`http://localhost:5000/api/articles`)
     const topics = Object.keys(resp.data.articles)
     // console.log(topics)
     topics.forEach((topic) => {
-      console.log(topic)
+      // console.log(topic)
       resp.data.articles[topic].forEach((article)=> {
-        console.log(article)
+        // console.log(article)
         cardContainer.appendChild(Card(article))
       })
     })
